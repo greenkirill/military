@@ -10,7 +10,9 @@ function setItem(key, item) {
     window.localStorage.setItem(key, JSON.stringify(item));
 }
 
-let inputStorage = {}
+var inputStorage = {}
+
+
 
 function saveInputValue(key, val) {
     inputStorage[key] = val;
@@ -23,4 +25,15 @@ function getInputValue(key) {
         val = getItem("input" + key);
     }
     return val;
+}
+
+function reinitStorage() {
+    $("textarea[id]").each(function (item) {
+        let id = $(this).attr("id");
+        saveInputValue(id, $(this).val());
+    });
+    $("input[id]").each(function (item) {
+        let id = $(this).attr("id");
+        saveInputValue(id, $(this).val());
+    });
 }

@@ -19,6 +19,8 @@
         crossorigin="anonymous"></script>
     <script>$(document).ready(function () { $('body').bootstrapMaterialDesign(); });</script>
     <link rel="stylesheet" type="text/css" href="styles/main.css">
+    <script src="scripts/correction_table.js"></script>
+    <script src="scripts/utilities.js"></script>
     <script src="scripts/router.js"></script>
     <script src="scripts/storage.js"></script>
     <script src="scripts/meteo.js"></script>
@@ -34,16 +36,13 @@
     <!-- METEO -->
     <main id="meteo" style="display: none;">
         <a class="routerLink" href="#home">Home</a>
+        <a class="routerLink" href="#meteoResult">Result</a>
         <form>
             <button type="button" class="btn btn-raised btn-danger" onclick="clearALl_meteo()">Очистить все</button>
 
             <div class="form-group">
-                <label for="meteo-first4numbers" class="bmd-label-floating">Первые 4 числа через пробел</label>
-                <input type="text" class="form-control" id="meteo-first4numbers">
-            </div>
-            <div class="form-group">
-                <label for="meteo-otherNumbers" class="bmd-label-floating">Остальные числа через пробел</label>
-                <input type="text" class="form-control" id="meteo-otherNumbers">
+                <label for="meteo-groups" class="bmd-label-floating">Данные через пробел/тире/запятую/точку</label>
+                <textarea class="form-control" id="meteo-groups" rows="4"></textarea>
             </div>
             <div class="form-group">
                 <label for="meteo-alpha" class="bmd-label-floating">Альфа</label>
@@ -53,7 +52,40 @@
                 <label for="meteo-dhamc" class="bmd-label-floating">ΔH<sub>AMC</sub></label>
                 <input type="text" class="form-control" id="meteo-dhamc">
             </div>
+            <div class="form-group">
+                <label for="meteo-dvksum" class="bmd-label-floating">ΔV<sub>kсум</sub></label>
+                <input type="text" class="form-control" id="meteo-dvksum">
+            </div>
+            <div class="form-group">
+                <label for="meteo-dvotz" class="bmd-label-floating">ΔV<sub>отз</sub></label>
+                <input type="text" class="form-control" id="meteo-dvotz">
+            </div>
+            <div class="form-group">
+                <label for="meteo-dv0sum" class="bmd-label-floating">ΔV<sub>0сум</sub></label>
+                <input type="text" class="form-control" id="meteo-dv0sum">
+            </div>
+            <div class="form-group">
+                <label for="meteo-dh0" class="bmd-label-floating">ΔH<sub>0</sub></label>
+                <input type="text" class="form-control" id="meteo-dh0">
+            </div>
+            <div class="form-group">
+                <label for="meteo-z" class="bmd-label-floating">Заряд</label>
+                <input type="text" class="form-control" id="meteo-z">
+            </div>
+            <div class="form-group">
+                <label for="meteo-m" class="bmd-label-floating">Считать для (через пробел/тире/etc)</label>
+                <input type="text" class="form-control" id="meteo-m">
+            </div>
+
+            <button type="button" class="btn btn-raised btn-danger" onclick="calculateMeteo()">Считать</button>
+
         </form>
+    </main>
+    <!-- METEO RESULT-->
+    <main id="meteoResult" style="display: none;">
+        <a class="routerLink" href="#meteo">Meteo</a>
+        <h2>Ну как бы тут посчитано да ага</2>
+        <div id="meteoR-group"></div>
     </main>
 </body>
 
