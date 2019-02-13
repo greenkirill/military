@@ -2,10 +2,56 @@
 
 <head>
     <title>Военка</title>
+    <link rel="stylesheet"
+        href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css"
+        integrity="sha384-wXznGJNEXNG1NFsbm0ugrLFMQPWswR3lds2VeinahP8N0zJw9VWSopbjv2x7WCvX" crossorigin="anonymous">
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/popper.js@1.12.6/dist/umd/popper.js"
+        integrity="sha384-fA23ZRQ3G/J53mElWqVJEGJzU0sTs+SvzG8fXVWP+kJQ1lwFAOkcUOysnlKJC33U"
+        crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/bootstrap-material-design@4.1.1/dist/js/bootstrap-material-design.js"
+        integrity="sha384-CauSuKpEqAFajSpkdjv3z9t8E7RlpJ1UP0lKM/+NdtSarroVKu069AlsRPKkFBz9"
+        crossorigin="anonymous"></script>
+    <script>$(document).ready(function () { $('body').bootstrapMaterialDesign(); });</script>
+    <link rel="stylesheet" type="text/css" href="styles/main.css">
+    <script src="scripts/meteo.js"></script>
+    <script src="scripts/router.js"></script>
+    <script src="scripts/storage.js"></script>
+    <script src="scripts/main.js"></script>
 </head>
 
 <body>
-    <h1>Ку</h1>
+    <!-- HOME -->
+    <main id="home" style="display: none;">
+        <a class="routerLink" href="#meteo">Meteo</a>
+    </main>
+
+    <!-- METEO -->
+    <main id="meteo" style="display: none;">
+        <a class="routerLink" href="#home">Home</a>
+        <form>
+
+            <div class="form-group">
+                <label for="meteo-first4numbers" class="bmd-label-floating">Первые 4 числа через пробел</label>
+                <input type="text" class="form-control" id="meteo-first4numbers">
+            </div>
+            <div class="form-group">
+                <label for="meteo-otherNumbers" class="bmd-label-floating">Остальные числа через пробел</label>
+                <input type="text" class="form-control" id="meteo-otherNumbers">
+            </div>
+            <div class="form-group">
+                <label for="meteo-alpha" class="bmd-label-floating">Альфа</label>
+                <input type="text" class="form-control" id="meteo-alpha">
+            </div>
+            <div class="form-group">
+                <label for="meteo-dhamc" class="bmd-label-floating">ΔH<sub>AMC</sub></label>
+                <input type="text" class="form-control" id="meteo-dhamc">
+            </div>
+        </form>
+    </main>
 </body>
 
 </html>
