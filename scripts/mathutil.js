@@ -32,7 +32,6 @@ function ogz(x1, y1, x2, y2) {
 function DUtos(du) {
   let f = Math.floor(du / 100);
   let s = (du + 6000) % 100;
-  f = f < 10 ? "0" + f : f;
   s = s < 10 ? "0" + s : s;
   return f + "-" + s;
 }
