@@ -1,5 +1,4 @@
 $(function () {
-    console.log("asdsad");
     goto(window.location.hash);
 
     $(".routerLink").click(function (e) {
@@ -27,4 +26,5 @@ $(function () {
         let id = $(this).attr("id");
         saveInputValue(id, $(this).val());
     })
+    
 });
