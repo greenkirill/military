@@ -22,18 +22,23 @@ function pgz(x, y, a, d) {
   return { x: Math.round(x + dx), y: Math.round(y + dy) };
 }
 
+
 function ogz(x1, y1, x2, y2) {
   let a = Math.atan2(y2 - y1, x2 - x1);
   let du = RadtoDU(a);
-  let d = (x2 - x1) / Math.cos(a);
-  return { a: du, d: Math.abs(d) };
+  let d = (y2 - y1) / Math.sin(a);
+  console.log(x1, y1, x2, y2, d)
+  return { a: du, d: D2d(x1, y1, x2, y2) };
 }
 
+
+
 function DUtos(du) {
-  let f = Math.floor(du / 100);
-  let s = (du + 6000) % 100;
+  let pm = du > 0;
+  let f = Math.floor(Math.abs(du) / 100);
+  let s = (Math.abs(du) + 6000) % 100;
   s = s < 10 ? "0" + s : s;
-  return f + "-" + s;
+  return (pm ? "" : "-")+ f + "-" + s;
 }
 
 function approx(xs, ys, x) {

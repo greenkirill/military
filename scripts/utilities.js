@@ -49,7 +49,7 @@ function splitString(str) {
   }
 }
 function splitStringToNum(str) {
-  let separators = ["-", ",", ".", " ", ":", ";", "/", "|", "\\"];
+  let separators = [".", ",", " ", "-", ":", ";", "/", "|", "\\"];
   str = str.trim();
   str = str.replace(/\s+/gm, " ");
   let res = [];
