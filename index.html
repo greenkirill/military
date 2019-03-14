@@ -47,6 +47,7 @@
     <script src="scripts/control-1.js"></script>
     <script src="scripts/control-2.js"></script>
     <script src="scripts/pgz.js"></script>
+    <script src="scripts/nzr.js"></script>
     <script src="scripts/ogz.js"></script>
     <script src="scripts/meteo.js"></script>
 
@@ -75,6 +76,7 @@
       <a class="routerLink" href="#c2">c2</a>
       <a class="routerLink" href="#pgz">pgz</a>
       <a class="routerLink" href="#ogz">ogz</a>
+      <a class="routerLink" href="#nzr">nzr</a>
     </nav>
 
     <!-- HOME -->
@@ -186,6 +188,25 @@
         type="button"
         class="btn btn-raised btn-danger"
         onclick="clearAll_ogz()"
+      >
+        Очистить все
+      </button>
+    </main>
+    <!-- nzr -->
+    <main id="nzr" style="display: none;">
+      <form></form>
+
+      <button
+        type="button"
+        class="btn btn-raised btn-danger"
+        onclick="calculatenzr()"
+      >
+        Считать
+      </button>
+      <button
+        type="button"
+        class="btn btn-raised btn-danger"
+        onclick="clearAll_nzr()"
       >
         Очистить все
       </button>

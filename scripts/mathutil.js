@@ -38,7 +38,7 @@ function DUtos(du) {
   let f = Math.floor(Math.abs(du) / 100);
   let s = (Math.abs(du) + 6000) % 100;
   s = s < 10 ? "0" + s : s;
-  return (pm ? "" : "-")+ f + "-" + s;
+  return (pm ? "+" : "-")+ f + "-" + s;
 }
 
 function approx(xs, ys, x) {

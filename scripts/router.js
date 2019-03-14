@@ -38,6 +38,25 @@ var routerTasks = {
             })
         });
     }
+  ],nzr: [
+    () => {
+      $("main#nzr > form").html("");
+    },
+    () => {
+      makeForm("main#nzr > form", nzr_form);
+    },
+    () => {
+        $("main#nzr > form input").each(function (i, obj) {
+            let id = $(this).attr("id");
+            let val = getInputValue("nzr"+id);
+            $(this).val(val);
+            if (val)
+                $(this).parent().addClass("is-filled");
+            $(this).change(function (e) {
+                saveInputValue("nzr"+id, $(this).val());
+            })
+        });
+    }
   ],
   pgz: [
     () => {

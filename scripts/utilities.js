@@ -48,6 +48,28 @@ function splitString(str) {
     }
   }
 }
+function splitStringToKom(str) {
+  let separators = [",", ".", " ", "-", ":", ";", "/", "|", "\\"];
+  str = str.trim();
+  str = str.replace(/\s+/gm, " ");
+  let res = [];
+  for (const sep of separators) {
+    if (str.indexOf(sep) > -1) {
+      res = str.split(sep);
+      break;
+    }
+  }
+  for (let i = 0; i < res.length; i++) {
+    const elem = res[i];
+    res[i] = {
+      z: elem[elem.length - 1] === "-" ? -1 : +1,
+      pl: elem[0] === "п" ? 1 : -1,
+      d: parseInt(elem.substr(1, elem.length - 2))
+    };
+  }
+  return res;
+}
+
 function splitStringToNum(str) {
   let separators = [".", ",", " ", "-", ":", ";", "/", "|", "\\"];
   str = str.trim();
@@ -98,7 +120,7 @@ function getObj(form) {
     let id = $(this).attr("id");
     let val = $(this).val();
     ret[id] =
-      parseInt(val) && !/[\s\.\,\|\-]/gm.test(val) ? parseInt(val) : val;
+      parseInt(val) && !/[\s\.\,\|]/gm.test(val) ? parseInt(val) : val;
   });
   return ret;
 }

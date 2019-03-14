@@ -10,8 +10,7 @@ var t4_form = [
     type: "text",
     label: "заряд (4,2,п)",
     required: true,
-    field: "z",
-    inputmode: "numeric"
+    field: "z"
   },
   {
     type: "text",
@@ -146,6 +145,20 @@ var t4_form = [
     required: true,
     field: "nyy"
   },
+  {
+    type: "text",
+    inputmode: "numeric",
+    label: "Огневой налет в минутах (если есть)",
+    required: true,
+    field: "t"
+  },
+  {
+    type: "text",
+    inputmode: "numeric",
+    label: "Беглым (дефолтно 4)",
+    required: true,
+    field: "nb"
+  }
   // {
   //   type: "text",
   //   inputmode: "numeric",
@@ -171,6 +184,7 @@ function clearAll_kr4() {
 function calculatekr4() {
   let vals = getObj("kr4");
   vals["nn"] = vals["nn"] ? vals["nn"] : 6;
+  vals["nb"] = vals["nb"] ? vals["nb"] : 4;
   vals["Ds"] = splitStringToNum(vals["Ds"]);
   vals["dDs"] = splitStringToNum(vals["dDs"]);
   vals["dds"] = splitStringToNum(vals["dds"]);
@@ -212,9 +226,9 @@ function calculatekr4() {
   let KU = D2d(vals["xknp"], vals["yknp"], vals["xt"], vals["yt"]) / da["d"];
   let iv = Math.round((1000 * vals["f"]) / (da["d"] * vals["nn"]));
 
-  vals["nyy"] = vals["nyy"] ? vals["nyy"] : (iv * 0.001 * di > 25 ? 2 : 1);
-  let noru = vals["n"]/(vals["nn"]*3*vals["nyy"])
-
+  vals["nyy"] = vals["nyy"] ? vals["nyy"] : iv * 0.001 * di > 25 ? 2 : 1;
+  let noru = vals["n"] / (vals["nn"] * 3 * vals["nyy"]);
+  let ska = vals["g"] / (xt * 3);
   clearResult();
 
   appendResult({ title: "дальность топ", value: da["d"] });
@@ -231,7 +245,16 @@ function calculatekr4() {
   appendResult({ title: "KU", value: KU });
   appendResult({ title: "Iv", value: DUtos(iv) });
   appendResult({ title: "nyy", value: vals["nyy"] });
-  appendResult({ title: "снарядов на орудие", value: noru  });
+  appendResult({ title: "снарядов на орудие", value: noru });
+  appendResult({ title: "скачек", value: ska });
+  if (vals["t"]) {
+    let nvs = ((vals["t"] - 1) * 60) / (vals["n"] - vals["nn"] * vals["nb"]);
+    nvs = Math.floor(nvs);
+    appendResult({ title: "снаряд раз в ___ сек", value: nvs });
+  }
 
+  let kom = "СУПЕРЛЕНЬ: «Вишня». Стой. Цель 52-я, командный пункт укрытый. Заряд второй, шкала тысячных. Прицел 266. Скачок 4. Уровень 30-02. Основное направление, левее 1-12. Веер 0-05, установок две. По два снаряда беглый (остальные 7 секунд выстрел). Огонь»."
+
+  appendResult({ title: "типа рандомная команда", value: kom });
   goto("#result");
 }
