@@ -241,9 +241,9 @@ function calculatekr4() {
   appendResult({ title: "прицел", value: p });
   appendResult({ title: "dX тыс", value: xt });
   appendResult({ title: "eps", value: DUtos(eps) });
-  appendResult({ title: "dP", value: dp });
-  appendResult({ title: "KU", value: KU });
-  appendResult({ title: "Iv", value: DUtos(iv) });
+  appendResult({ title: "dП", value: dp });
+  appendResult({ title: "Ку", value: KU });
+  appendResult({ title: "Iв", value: DUtos(iv) });
   appendResult({ title: "nyy", value: vals["nyy"] });
   appendResult({ title: "снарядов на орудие", value: noru });
   appendResult({ title: "скачек", value: ska });
