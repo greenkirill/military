@@ -64,7 +64,7 @@ var t4_form = [
   {
     type: "text",
     inputmode: "numeric",
-    label: "Д, Дальности через пробел/тире",
+    label: "Д, Дальности через запятую/точку",
     required: true,
     field: "Ds"
   },
