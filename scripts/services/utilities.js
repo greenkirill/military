@@ -60,14 +60,14 @@ function splitStringToKom(str) {
     }
   }
   for (let i = 0; i < res.length; i++) {
-    const elem = res[i].match(/(([пл])(\d+))?([\+\-]|все[\+\-]|пр[\+\-]|равбгц|равдгц)?(фр(\d+))?/i);
+    const elem = res[i].match(/(([пл])(\d+))?([\+\-]|все[\+\-]|пр[\+\-]|рав[\+\-])?(фр(\d+))?/i);
     res[i] = {};
     if (elem[1])
-      res[i][1] = {
-        d: (elem[2].toLowerCase() === "п" ? +1 : -1) * parseInt(elem[3]);
+      res[i].d = {
+        d: (elem[2].toLowerCase() === "п" ? +1 : -1) * parseInt(elem[3])
       }
     if (elem[5])
-      res[i][3] = {
+      res[i].f = {
         f: parseInt(elem[6])
       }
     if (elem[4]) {
@@ -86,8 +86,8 @@ function splitStringToKom(str) {
           tp = 0
           break;
       }
-      res[i][2] = {
-        tp, z: elem[4].substr(elem[4].length - 1) === "+" ? 1 : -1;
+      res[i].D = {
+        tp, z: elem[4].substr(elem[4].length - 1) === "+" ? 1 : -1
       }
     }
   }

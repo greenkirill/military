@@ -15,7 +15,7 @@ function sc(vals) {
             //console.log(3);
         }
         catch (e) {
-            //console.log(e); 
+            console.log(e); 
         }
     }
     this.cr = function () {

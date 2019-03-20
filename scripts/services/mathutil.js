@@ -38,7 +38,7 @@ function DUtos(du) {
   let f = Math.floor(Math.abs(du) / 100);
   let s = (Math.abs(du) + 6000) % 100;
   s = s < 10 ? "0" + s : s;
-  return (pm ? "+" : "-")+ f + "-" + s;
+  return (pm ? "+" : "-") + f + "-" + s;
 }
 
 function approx(xs, ys, x) {
@@ -69,6 +69,86 @@ function Dd_to_xtyt(vals) {
 }
 
 
+function calc_D(v, D, z) {
+  let DD = 0;
+  if (D.tp === 0) {
+    if (z === -1 || z === 1)
+      DD = -8 * v.vd * D.z;
+    else if (z === 2 || z === 4)
+      DD = -4 * v.vd * D.z;
+    else
+      DD = -2 * v.vd * D.z;
+  }
+  else if (D.tp === 1) {
+    if (v.Gc >= 100)
+      DD = -1 * v.Gc * D.z;
+    else
+      DD = -50 * D.z;
+  }
+  else if (D.tp === 2) {
+    if (v.Gc >= 100)
+      DD = -2 * v.Gc * D.z / 3;
+    else
+      DD = -25 * D.z;
+  }
+  else if (D.tp === 3) {
+    if (v.Gc >= 100)
+      DD = -1 * v.Gc * D.z / 2;
+    else
+      DD = 0;
+  }
+  return DD;
+}
+
+function calc_dD(v, c) {
+  let res = {};
+  res.P = Math.round(c.D / v.xt);
+  res.d = Math.round(v.pl * c.D * v.shu / 100 - v.ku * c.d);
+  return res;
+}
+
+function calc_dD2(v, c) {
+  let res = {};
+  let cosec = 1 / Math.sin(DUtoRad(v.ps));
+  let secan = 1 / Math.cos(DUtoRad(v.ps));
+  res.D = c.D / secan + c.d * 0.001 * v.Dk / cosec;
+  res.P = res.D / v.xt;
+  res.d = v.pl * (c.D * secan / (0.001 * v.Di * cosec * cosec)) - c.d * (0.001 * v.Dk) / (secan * 0.001 * v.Di);
+  res.P = Math.round(res.P);
+  res.d = Math.round(res.d);
+  return res;
+}
+
+// z == 0 знаков вообще не было
+// z == 1/-1 первый знак
+// z == 2 Г<100 4Вд
+// z == 3 Г<100 2Вд
+// z == 4 Г>100 4Вд 
 function calc_kk(v) {
-  
+  let z = 0;
+  for (let i = 0; i < v["kk"].length; i++) {
+    const elem = v.kk[i];
+    elem.c = { D: 0, d: 0, f: -1 };
+    if (elem.D) {
+      if (z === 0)
+        z = elem.D.z;
+      else if (z < 2) {
+        if (z * elem.D.z === -1) {
+          if (v.Gc >= 100)
+            z = 4;
+          else
+            z = 2;
+        }
+      }
+      else if (z == 2)
+        z = 3;
+      elem.c.D = calc_D(v, elem.D, z);
+    }
+    if (elem.d)
+      elem.c.d = elem.d.d;
+    if (elem.f)
+      elem.c.f = elem.f.f;
+    elem.res = calc_dD(v, elem.c);
+    elem.res2 = calc_dD2(v, elem.c);
+  }
 }

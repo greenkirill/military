@@ -146,13 +146,30 @@ function calculatenzr2() {
   _.c((v) => {
     v["ku"] = v["Dk"] / v["Dt"];
     v["shu"] = Math.round((v["ps"] * 100) / v["Dt"]);
+    v.Iv = Math.round((v["Fc"] * v.ku) / (6));
+    v.sk = v.Gc / (3 * v.xt);
   }, (v) => {
-    return [{ t: "Ку/Шу", v: `${v["ku"]} / ${v["shu"]}` }]
+    return [
+      { t: "Ку/Шу", v: `${v["ku"]} / ${v["shu"]}` },
+      { t: "Скачек", v: `${v["sk"]}` },
+      { t: "Iв / Iв * Di * 0.001", v: `${DUtos(v.Iv)} / ${v.Iv * v.Di / 1000}` }]
   });
   _.c((v) => {
     v["kk"] = splitStringToKom(v["kk"]);
+    calc_kk(v);
   }, (v) => {
-    return [];
-  })
+    let res = [];
+    for (let i = 0; i < v.kk.length; i++) {
+      const k = v.kk[i];
+      res.push({ t: `${i + 1} Прицел / доворот`, v: `${k.res.P} / ${DUtos(k.res.d)}` })
+    }
+    for (let i = 0; i < v.kk.length; i++) {
+      const k = v.kk[i];
+      res.push({
+        t: `${i + 1} Прицел / доворот (пс > 5-00)`, v: `${k.res2.P} / ${DUtos(k.res2.d)} `
+      })
+    }
+    return res;
+  });
   _.cr();
 }
