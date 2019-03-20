@@ -18,3 +18,7 @@ div.template {
 [class^=bmd-label] {
   color: black;
 }
+
+main#result table {
+  font-size: 14px !important;
+}

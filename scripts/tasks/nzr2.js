@@ -1,6 +1,18 @@
 var nzr2_form = [
   {
     type: "text",
+    label: "ОП <strong>п</strong>раво или <strong>л</strong>ево?",
+    required: true,
+    field: "pl"
+  },
+  {
+    type: "text",
+    label: "цель <strong>о</strong>ткрытая или <strong>у</strong>крытая?",
+    required: true,
+    field: "uo"
+  },
+  {
+    type: "text",
     label: "Д<sub>к</sub>",
     required: true,
     field: "Dk",
@@ -70,15 +82,9 @@ var nzr2_form = [
   },
   {
     type: "text",
-    label: "команды через запятую (команда:л25-,п133+)",
+    label: "команды через запятую",
     required: true,
     field: "kk"
-  },
-  {
-    type: "text",
-    label: "ОП право или лево?",
-    required: true,
-    field: "pl"
   }
 ];
 
@@ -96,12 +102,57 @@ function clearAll_nzr2() {
 }
 
 function calculatenzr2() {
-  let _ = sc("nzr2");
+  let _ = new sc("nzr2");
+  // Di, di
   _.c((v) => {
     v["Di"] = v["Dt"] + v["dD"];
-    v["di"] = vals["dt"] + vals["dd"];
+    v["di"] = v["dt"] + v["dd"];
   }, (v) => {
-    return [{t: "Исчисленая дальность/доворот", v: `${v["Di"]}/${DUtos(v["di"])}`}]
+    return [{ t: "Исчисленая дальность/доворот", v: `${v["Di"]} / ${DUtos(v["di"])}` }]
   });
+  // 
+  _.c((v) => {
+    v["pl"] = v["pl"].toLowerCase()[0] === "л" ? -1 : 1;
+    v["uo"] = v["uo"].toLowerCase()[0] === "о" ? -1 : 1;
+    v["Gc"] = v["Gc"] ? v["Gc"] : 1;
+    let Z = {};
+    if (v["z"] == 2) {
+      Z = _2z;
+    } else if (v["z"] == 4) {
+      Z = _4z;
+    } else {
+      Z = _pz;
+    }
+    v["Z"] = Z;
+  }, (v) => {
+    return [{ t: "ОП / Цель / ПС", v: `ОП ${v["pl"] ? "справа" : "слева"} / цель ${v["uo"] ? "укрытая" : "открытая"} / ПС ${v["pc"] > 500 ? "больше" : "меньше"} 5-00` }]
+  });
+  // прицел, дХтыс
+  _.c((v) => {
+    v["p"] = Math.round(approx(v["Z"].D, v["Z"].P, v["Di"]));
+    v["xt"] = Math.round(approx(v["Z"].D, v["Z"].xt, v["Di"]));
+    v["vd"] = Math.round(approx(v["Z"].D, v["Z"].vd, v["Di"]));
+  }, (v) => {
+    return [{ t: "прицел/dXтыс/Вд", v: `${v["p"]} / ${v["xt"]} / ${v["vd"]}` }]
+  });
+  // eps, Ur
+  _.c((v) => {
+    v["eps"] = Math.round((v["dh"] * 1000) / v["Di"]);
+    v["ur"] = 3000 + v["eps"];
+  }, (v) => {
+    return [{ t: "eps/уровень", v: `${DUtos(v["eps"])} / ${DUtos(v["ur"])}` }]
+  });
+  // Ку, Шу
+  _.c((v) => {
+    v["ku"] = v["Dk"] / v["Dt"];
+    v["shu"] = Math.round((v["ps"] * 100) / v["Dt"]);
+  }, (v) => {
+    return [{ t: "Ку/Шу", v: `${v["ku"]} / ${v["shu"]}` }]
+  });
+  _.c((v) => {
+    v["kk"] = splitStringToKom(v["kk"]);
+  }, (v) => {
+    return [];
+  })
   _.cr();
 }

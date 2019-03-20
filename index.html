@@ -1,236 +1,181 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta http-equiv="cache-control" content="max-age=0" />
-    <meta http-equiv="cache-control" content="no-cache" />
-    <meta http-equiv="expires" content="0" />
-    <meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
-    <meta http-equiv="pragma" content="no-cache" />
-    <title>Военка</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="stylesheet"
-      href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css"
-      integrity="sha384-wXznGJNEXNG1NFsbm0ugrLFMQPWswR3lds2VeinahP8N0zJw9VWSopbjv2x7WCvX"
-      crossorigin="anonymous"
-    />
 
-    <script
-      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://unpkg.com/popper.js@1.12.6/dist/umd/popper.js"
-      integrity="sha384-fA23ZRQ3G/J53mElWqVJEGJzU0sTs+SvzG8fXVWP+kJQ1lwFAOkcUOysnlKJC33U"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://unpkg.com/bootstrap-material-design@4.1.1/dist/js/bootstrap-material-design.js"
-      integrity="sha384-CauSuKpEqAFajSpkdjv3z9t8E7RlpJ1UP0lKM/+NdtSarroVKu069AlsRPKkFBz9"
-      crossorigin="anonymous"
-    ></script>
-    <script>
-      $(document).ready(function() {
-        $("body").bootstrapMaterialDesign();
-      });
-    </script>
-    <link rel="stylesheet" type="text/css" href="styles/main1.css" />
-    <script src="scripts/constants/correction_table.js"></script>
-    <script src="scripts/constants/fieldname.js"></script>
-    <script src="scripts/services/utilities.js"></script>
-    <script src="scripts/services/router.js"></script>
-    <script src="scripts/services/storage.js"></script>
-    <script src="scripts/services/mathutil.js"></script>
-    <script src="scripts/services/result.js"></script>
-    <script src="scripts/services/saveCalc.js"></script>
+<head>
+  <meta http-equiv="cache-control" content="max-age=0" />
+  <meta http-equiv="cache-control" content="no-cache" />
+  <meta http-equiv="expires" content="0" />
+  <meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
+  <meta http-equiv="pragma" content="no-cache" />
+  <title>Военка</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet"
+    href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css"
+    integrity="sha384-wXznGJNEXNG1NFsbm0ugrLFMQPWswR3lds2VeinahP8N0zJw9VWSopbjv2x7WCvX" crossorigin="anonymous" />
 
-    <script src="scripts/tasks/kr4.js"></script>
-    <script src="scripts/tasks/control-1.js"></script>
-    <script src="scripts/tasks/control-2.js"></script>
-    <script src="scripts/tasks/pgz.js"></script>
-    <script src="scripts/tasks/nzr.js"></script>
-    <script src="scripts/tasks/ogz.js"></script>
-    <script src="scripts/tasks/meteo.js"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/popper.js@1.12.6/dist/umd/popper.js"
+    integrity="sha384-fA23ZRQ3G/J53mElWqVJEGJzU0sTs+SvzG8fXVWP+kJQ1lwFAOkcUOysnlKJC33U"
+    crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/bootstrap-material-design@4.1.1/dist/js/bootstrap-material-design.js"
+    integrity="sha384-CauSuKpEqAFajSpkdjv3z9t8E7RlpJ1UP0lKM/+NdtSarroVKu069AlsRPKkFBz9"
+    crossorigin="anonymous"></script>
+  <script>
+    $(document).ready(function () {
+      $("body").bootstrapMaterialDesign();
+    });
+  </script>
+  <link rel="stylesheet" type="text/css" href="styles/main1.css" />
+  <script src="scripts/constants/correction_table.js"></script>
+  <script src="scripts/constants/fieldname.js"></script>
+  <script src="scripts/services/utilities.js"></script>
+  <script src="scripts/services/router.js"></script>
+  <script src="scripts/services/storage.js"></script>
+  <script src="scripts/services/mathutil.js"></script>
+  <script src="scripts/services/result.js"></script>
+  <script src="scripts/services/saveCalc.js"></script>
 
-    <script src="scripts/main.js"></script>
-  </head>
+  <script src="scripts/tasks/kr4.js"></script>
+  <script src="scripts/tasks/control-1.js"></script>
+  <script src="scripts/tasks/control-2.js"></script>
+  <script src="scripts/tasks/pgz.js"></script>
+  <script src="scripts/tasks/nzr.js"></script>
+  <script src="scripts/tasks/nzr2.js"></script>
+  <script src="scripts/tasks/ogz.js"></script>
+  <script src="scripts/tasks/meteo.js"></script>
 
-  <body>
-    <!-- templates -->
-    <div class="form-group template" id="inputtemplate">
-      <label for="" class="bmd-label-floating"></label>
-      <input type="" class="form-control" id="" />
-    </div>
-<table class="template">
+  <script src="scripts/main.js"></script>
+</head>
+
+<body>
+  <!-- templates -->
+  <div class="form-group template" id="inputtemplate">
+    <label for="" class="bmd-label-floating"></label>
+    <input type="" class="form-control" id="" />
+  </div>
+  <div class="form-group template" id="inputchecktemplate">
+      <label>
+        <input type="checkbox"> Check me out
+      </label>
+  </div>
+  <table class="template">
     <tr class="template" id="trresulttemplate">
       <td class="title"></td>
       <td class="value"></td>
-    </tr></table>
+    </tr>
+  </table>
 
-    <!-- nav -->
-    <nav>
-      <a class="routerLink" href="#home">Home</a>
-      <a class="routerLink" href="#meteo">Meteo</a>
-      <a class="routerLink" href="#result">Result</a>
-      <a class="routerLink" href="#kr4">kr4</a>
-      <a class="routerLink" href="#c1">c1</a>
-      <a class="routerLink" href="#c2">c2</a>
-      <a class="routerLink" href="#pgz">pgz</a>
-      <a class="routerLink" href="#ogz">ogz</a>
-      <a class="routerLink" href="#nzr">nzr</a>
-    </nav>
+  <!-- nav -->
+  <nav>
+    <a class="routerLink" href="#home">Home</a>
+    <a class="routerLink" href="#meteo">Meteo</a>
+    <a class="routerLink" href="#result">Result</a>
+    <a class="routerLink" href="#kr4">kr4</a>
+    <a class="routerLink" href="#c1">c1</a>
+    <a class="routerLink" href="#c2">c2</a>
+    <a class="routerLink" href="#pgz">pgz</a>
+    <a class="routerLink" href="#ogz">ogz</a>
+    <a class="routerLink" href="#nzr">nzr</a>
+    <a class="routerLink" href="#nzr2">nzr2</a>
+  </nav>
 
-    <!-- HOME -->
-    <main id="home" style="display: none;"></main>
+  <!-- HOME -->
+  <main id="home" style="display: none;"></main>
 
-    <!-- METEO -->
-    <main id="meteo" style="display: none;"></main>
-    <!-- METEO-->
-    <main id="result" style="display: none;">
-      <table class="table">
-        <thead class="thead-dark">
-          <tr>
-            <th scope="col">название</th>
-            <th scope="col">значение</th>
-          </tr>
-        </thead>
-        <tbody>
-        </tbody>
-      </table>
-    </main>
-    <!-- kr4 -->
-    <main id="kr4" style="display: none;">
-      <form></form>
+  <!-- METEO -->
+  <main id="meteo" style="display: none;"></main>
+  <!-- result-->
+  <main id="result" style="display: none;">
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">название</th>
+          <th scope="col">значение</th>
+        </tr>
+      </thead>
+      <tbody>
+      </tbody>
+    </table>
+  </main>
+  <!-- kr4 -->
+  <main id="kr4" style="display: none;">
+    <form></form>
 
-      <button
-        type="button"
-        class="btn btn-raised btn-danger"
-        onclick="calculatekr4()"
-      >
-        Считать
-      </button>
-      <button
-        type="button"
-        class="btn btn-raised btn-danger"
-        onclick="clearAll_kr4()"
-      >
-        Очистить все
-      </button>
-    </main>
-    <!-- c1 -->
-    <main id="c1" style="display: none;">
-      <form></form>
+    <button type="button" class="btn btn-raised btn-danger" onclick="calculatekr4()">
+      Считать
+    </button>
+    <button type="button" class="btn btn-raised btn-danger" onclick="clearAll_kr4()">
+      Очистить все
+    </button>
+  </main>
+  <!-- c1 -->
+  <main id="c1" style="display: none;">
+    <form></form>
 
-      <button
-        type="button"
-        class="btn btn-raised btn-danger"
-        onclick="calculatec1()"
-      >
-        Считать
-      </button>
-      <button
-        type="button"
-        class="btn btn-raised btn-danger"
-        onclick="clearAll_c1()"
-      >
-        Очистить все
-      </button>
-    </main>
-    <!-- c2 -->
-    <main id="c2" style="display: none;">
-      <form></form>
+    <button type="button" class="btn btn-raised btn-danger" onclick="calculatec1()">
+      Считать
+    </button>
+    <button type="button" class="btn btn-raised btn-danger" onclick="clearAll_c1()">
+      Очистить все
+    </button>
+  </main>
+  <!-- c2 -->
+  <main id="c2" style="display: none;">
+    <form></form>
 
-      <button
-        type="button"
-        class="btn btn-raised btn-danger"
-        onclick="calculatec2()"
-      >
-        Считать
-      </button>
-      <button
-        type="button"
-        class="btn btn-raised btn-danger"
-        onclick="clearAll_c2()"
-      >
-        Очистить все
-      </button>
-    </main>
-    <!-- pgz -->
-    <main id="pgz" style="display: none;">
-      <form></form>
+    <button type="button" class="btn btn-raised btn-danger" onclick="calculatec2()">
+      Считать
+    </button>
+    <button type="button" class="btn btn-raised btn-danger" onclick="clearAll_c2()">
+      Очистить все
+    </button>
+  </main>
+  <!-- pgz -->
+  <main id="pgz" style="display: none;">
+    <form></form>
 
-      <button
-        type="button"
-        class="btn btn-raised btn-danger"
-        onclick="calculatepgz()"
-      >
-        Считать
-      </button>
-      <button
-        type="button"
-        class="btn btn-raised btn-danger"
-        onclick="clearAll_pgz()"
-      >
-        Очистить все
-      </button>
-    </main>
-    <!-- ogz -->
-    <main id="ogz" style="display: none;">
-      <form></form>
+    <button type="button" class="btn btn-raised btn-danger" onclick="calculatepgz()">
+      Считать
+    </button>
+    <button type="button" class="btn btn-raised btn-danger" onclick="clearAll_pgz()">
+      Очистить все
+    </button>
+  </main>
+  <!-- ogz -->
+  <main id="ogz" style="display: none;">
+    <form></form>
 
-      <button
-        type="button"
-        class="btn btn-raised btn-danger"
-        onclick="calculateogz()"
-      >
-        Считать
-      </button>
-      <button
-        type="button"
-        class="btn btn-raised btn-danger"
-        onclick="clearAll_ogz()"
-      >
-        Очистить все
-      </button>
-    </main>
-    <!-- nzr -->
-    <main id="nzr" style="display: none;">
-      <form></form>
+    <button type="button" class="btn btn-raised btn-danger" onclick="calculateogz()">
+      Считать
+    </button>
+    <button type="button" class="btn btn-raised btn-danger" onclick="clearAll_ogz()">
+      Очистить все
+    </button>
+  </main>
+  <!-- nzr -->
+  <main id="nzr" style="display: none;">
+    <form></form>
 
-      <button
-        type="button"
-        class="btn btn-raised btn-danger"
-        onclick="calculatenzr()"
-      >
-        Считать
-      </button>
-      <button
-        type="button"
-        class="btn btn-raised btn-danger"
-        onclick="clearAll_nzr()"
-      >
-        Очистить все
-      </button>
-    </main>
-    <!-- nzr2 -->
-    <main id="nzr2" style="display: none;">
-      <form></form>
+    <button type="button" class="btn btn-raised btn-danger" onclick="calculatenzr()">
+      Считать
+    </button>
+    <button type="button" class="btn btn-raised btn-danger" onclick="clearAll_nzr()">
+      Очистить все
+    </button>
+  </main>
+  <!-- nzr2 -->
+  <main id="nzr2" style="display: none;">
+    <form></form>
 
-      <button
-        type="button"
-        class="btn btn-raised btn-danger"
-        onclick="calculatenzr2()"
-      >
-        Считать
-      </button>
-      <button
-        type="button"
-        class="btn btn-raised btn-danger"
-        onclick="clearAll_nzr2()"
-      >
-        Очистить все
-      </button>
-    </main>
-  </body>
+    <button type="button" class="btn btn-raised btn-danger" onclick="calculatenzr2()">
+      Считать
+    </button>
+    <button type="button" class="btn btn-raised btn-danger" onclick="clearAll_nzr2()">
+      Очистить все
+    </button>
+  </main>
+</body>
+
 </html>

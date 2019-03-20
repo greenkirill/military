@@ -15,13 +15,13 @@ function inputFromObj(o) {
   input.attr("id", o["field"]);
   if (o["inputmode"]) input.attr("inputmode", o["inputmode"]);
   input
-    .focus(function() {
+    .focus(function () {
       ne.addClass("is-focused");
     })
-    .focusout(function() {
+    .focusout(function () {
       ne.removeClass("is-focused");
     })
-    .change(function() {
+    .change(function () {
       let val = $(this).val();
       if (val) ne.addClass("is-filled");
       else ne.removeClass("is-filled");
@@ -60,12 +60,36 @@ function splitStringToKom(str) {
     }
   }
   for (let i = 0; i < res.length; i++) {
-    const elem = res[i];
-    res[i] = {
-      z: elem[elem.length - 1] === "-" ? -1 : +1,
-      pl: elem[0] === "п" ? 1 : -1,
-      d: parseInt(elem.substr(1, elem.length - 2))
-    };
+    const elem = res[i].match(/(([пл])(\d+))?([\+\-]|все[\+\-]|пр[\+\-]|равбгц|равдгц)?(фр(\d+))?/i);
+    res[i] = {};
+    if (elem[1])
+      res[i][1] = {
+        d: (elem[2].toLowerCase() === "п" ? +1 : -1) * parseInt(elem[3]);
+      }
+    if (elem[5])
+      res[i][3] = {
+        f: parseInt(elem[6])
+      }
+    if (elem[4]) {
+      let tp = -1;
+      switch (elem[4].toLowerCase()[0]) {
+        case "в":
+          tp = 1
+          break;
+        case "п":
+          tp = 2
+          break;
+        case "р":
+          tp = 3
+          break;
+        default:
+          tp = 0
+          break;
+      }
+      res[i][2] = {
+        tp, z: elem[4].substr(elem[4].length - 1) === "+" ? 1 : -1;
+      }
+    }
   }
   return res;
 }
@@ -116,7 +140,7 @@ function getMinIVbyDelta(arr, d, f) {
 
 function getObj(form) {
   let ret = {};
-  $("main#" + form + " input").each(function(i, obj) {
+  $("main#" + form + " input").each(function (i, obj) {
     let id = $(this).attr("id");
     let val = $(this).val();
     ret[id] =

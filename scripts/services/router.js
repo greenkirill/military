@@ -22,13 +22,13 @@ function typicalRouterTasks(form, formid) {
 }
 
 var routerTasks = {
-  kr4: typicalRouterTasks(t4_form, "kr4"),
-  c1: typicalRouterTasks(c1_form, "c1"),
-  nzr: typicalRouterTasks(nzr_form, "nzr"),
-  nzr2: typicalRouterTasks(nzr2_form, "nzr2"),
-  pgz: typicalRouterTasks(pgz_form, "pgz"),
-  ogz: typicalRouterTasks(ogz_form, "ogz"),
-  c2: typicalRouterTasks(c2_form, "c2"),
+  kr4: () => typicalRouterTasks(t4_form, "kr4"),
+  c1: () => typicalRouterTasks(c1_form, "c1"),
+  nzr: () => typicalRouterTasks(nzr_form, "nzr"),
+  nzr2: () => typicalRouterTasks(nzr2_form, "nzr2"),
+  pgz: () => typicalRouterTasks(pgz_form, "pgz"),
+  ogz: () => typicalRouterTasks(ogz_form, "ogz"),
+  c2: () => typicalRouterTasks(c2_form, "c2"),
 };
 
 function goto(hash) {
@@ -41,8 +41,8 @@ function goto(hash) {
   $("main").hide();
   $("main#" + hash).show();
   if (routerTasks[hash]) {
-    for (let i = 0; i < routerTasks[hash].length; i++) {
-      const task = routerTasks[hash][i];
+    for (let i = 0; i < routerTasks[hash]().length; i++) {
+      const task = routerTasks[hash]()[i];
       task();
     }
   }

@@ -62,8 +62,13 @@ function approx(xs, ys, x) {
 }
 
 function Dd_to_xtyt(vals) {
-  if (vals[fn.xknp] && vals[fn.yknp])
+  // if (vals[fn.xknp] && vals[fn.yknp])
   let xy = pgz(vals["xknp"], vals["yknp"], vals["at"], vals["dt"]);
   vals["xt"] = xy.x;
   vals["yt"] = xy.y;
+}
+
+
+function calc_kk(v) {
+  
 }
