@@ -60,3 +60,10 @@ function approx(xs, ys, x) {
   }
   return ((ys[i2] - ys[i1]) * (x - xs[i1])) / (xs[i2] - xs[i1]) + ys[i1];
 }
+
+function Dd_to_xtyt(vals) {
+  if (vals[fn.xknp] && vals[fn.yknp])
+  let xy = pgz(vals["xknp"], vals["yknp"], vals["at"], vals["dt"]);
+  vals["xt"] = xy.x;
+  vals["yt"] = xy.y;
+}

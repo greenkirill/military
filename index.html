@@ -36,20 +36,22 @@
       });
     </script>
     <link rel="stylesheet" type="text/css" href="styles/main1.css" />
-    <script src="scripts/correction_table.js"></script>
-    <script src="scripts/utilities.js"></script>
-    <script src="scripts/router.js"></script>
-    <script src="scripts/storage.js"></script>
-    <script src="scripts/mathutil.js"></script>
-    <script src="scripts/result.js"></script>
+    <script src="scripts/constants/correction_table.js"></script>
+    <script src="scripts/constants/fieldname.js"></script>
+    <script src="scripts/services/utilities.js"></script>
+    <script src="scripts/services/router.js"></script>
+    <script src="scripts/services/storage.js"></script>
+    <script src="scripts/services/mathutil.js"></script>
+    <script src="scripts/services/result.js"></script>
+    <script src="scripts/services/saveCalc.js"></script>
 
-    <script src="scripts/kr4.js"></script>
-    <script src="scripts/control-1.js"></script>
-    <script src="scripts/control-2.js"></script>
-    <script src="scripts/pgz.js"></script>
-    <script src="scripts/nzr.js"></script>
-    <script src="scripts/ogz.js"></script>
-    <script src="scripts/meteo.js"></script>
+    <script src="scripts/tasks/kr4.js"></script>
+    <script src="scripts/tasks/control-1.js"></script>
+    <script src="scripts/tasks/control-2.js"></script>
+    <script src="scripts/tasks/pgz.js"></script>
+    <script src="scripts/tasks/nzr.js"></script>
+    <script src="scripts/tasks/ogz.js"></script>
+    <script src="scripts/tasks/meteo.js"></script>
 
     <script src="scripts/main.js"></script>
   </head>
@@ -207,6 +209,25 @@
         type="button"
         class="btn btn-raised btn-danger"
         onclick="clearAll_nzr()"
+      >
+        Очистить все
+      </button>
+    </main>
+    <!-- nzr2 -->
+    <main id="nzr2" style="display: none;">
+      <form></form>
+
+      <button
+        type="button"
+        class="btn btn-raised btn-danger"
+        onclick="calculatenzr2()"
+      >
+        Считать
+      </button>
+      <button
+        type="button"
+        class="btn btn-raised btn-danger"
+        onclick="clearAll_nzr2()"
       >
         Очистить все
       </button>

@@ -171,7 +171,7 @@ var t4_form = [
 function clearAll_kr4() {
   var r = confirm("ТОЧНО!??!?!?!");
   if (r)
-    $("main#kr4 > form input").each(function(i, obj) {
+    $("main#kr4 > form input").each(function (i, obj) {
       let id = $(this).attr("id");
       $(this).val("");
       saveInputValue("kr4" + id, "");
@@ -179,6 +179,20 @@ function clearAll_kr4() {
         .parent()
         .removeClass("is-filled");
     });
+}
+
+function calckr4() {
+  let cf = sc("kr4");
+  cf.c((vals) => {
+    
+  }, (vals) => {
+
+  })
+  cf.c((vals) => {
+
+  }, (vals) => {
+
+  })
 }
 
 function calculatekr4() {

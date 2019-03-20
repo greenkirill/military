@@ -43,7 +43,7 @@ var nzr_form = [
   },
   {
     type: "text",
-    label: "Г<sub>ц</sub> (дефолт 99)",
+    label: "Г<sub>ц</sub> (дефолт 1)",
     required: true,
     field: "Gc",
     inputmode: "numeric"
