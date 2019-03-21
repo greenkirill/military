@@ -137,7 +137,7 @@ function calculatenzr2() {
   });
   // eps, Ur
   _.c((v) => {
-    v["eps"] = Math.round((v["dh"] * 1000) / v["Di"]);
+    v["eps"] = Math.round((v["dh"] * 1000) / v["Dt"]);
     v["ur"] = 3000 + v["eps"];
   }, (v) => {
     return [{ t: "eps/уровень", v: `${DUtos(v["eps"])} / ${DUtos(v["ur"])}` }]
